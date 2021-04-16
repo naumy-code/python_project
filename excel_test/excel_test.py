@@ -11,6 +11,7 @@ import os
     pd.read_csv()方法中header参数，默认为0，标签为0（即第1行）的行为表头。若设置为-1，则无表头
     对series的数据可以使用：变量名.index和变量名.values显示数据内容
     去掉表头：header=None 
+    etste
 '''
 
 
