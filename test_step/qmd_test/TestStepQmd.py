@@ -19,7 +19,7 @@ from module.common_api import hex_to_int_32
 '''
 
 
-class QmdTest:
+class TestStepQmd:
 
     def timing_transmission_test_case(self, step_name=None):
         # 获取测试的开始时间
@@ -56,11 +56,11 @@ class QmdTest:
                     'PIB值': '00',
                     '参数': {
                         '芯片类型': ('0x', '01'),
-                        # 'OPTION': option,
+                        'OPTION': ('0x', Option),
                         'CHANEL_INDEX': ('0X', '00')
                     },
                 }
-                mgmt_frame = self.tx.app_mgmt.mgmt_frame_for_pib_gen(init_config)
+                mgmt_frame = self.tx.app_mgmt.parser.mgmt_frame_for_pib_gen(init_config)
                 self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, 'A端发送TX_INIT帧')
 
                 '''
@@ -71,13 +71,20 @@ class QmdTest:
                     'PIB ID': 'A321',
                     'PIB值': '00',
                     '参数': {
+                        '芯片类型': ('0x', '01'),
                         'FRAME_TYPE': ('0x', '01'),
+                        'FRAME_TIMER': timing_interval,
                         'SIG': sig,
+                        'TX_LEVEL': transmission_level,
                         'TX_DAT_MCS': data_mcs,
                         'TX_DAT_PB': pb_mode,
+                        'TX_FORCE_ENABLE': ('0x', '00'),
+                        'TX_DAT_LEN': ('0x', '1000'),
+                        'TX_PHR': ('0x', '01000000000000000000000000000000'),
+                        'TX_PSDU': ('0x', '01000000000000000000000000000000'),
                     }
                 }
-                mgmt_frame = self.tx.app_mgmt.mgmt_frame_for_pib_gen(dat_config)
+                mgmt_frame = self.tx.app_mgmt.parser.mgmt_frame_for_pib_gen(dat_config)
                 self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, 'A端发送TX_DAT帧')
 
                 '''
@@ -102,6 +109,6 @@ class QmdTest:
 
 
 if __name__ == '__main__':
-    test_case = QmdTest()
+    test_case = TestStepQmd()
     # 定时发送测试
     test_case.timing_transmission_test_case()

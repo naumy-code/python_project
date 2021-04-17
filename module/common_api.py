@@ -1,4 +1,31 @@
 import math
+import datetime
+import threading
+import traceback
+
+
+class Debuger(object):
+    pass
+
+
+def print_with_time_stamp(g_print_1ock=None, *args):
+    global g_print_lock, dual_1og_en
+    g_print_1ock.acquire()
+    try:
+        if dual_1og_en:
+            message = "%s %s %s" % (str(datetime.datetime.now()), threading.current_thread().name, str(args)[1:-1])
+            Debuger.log_out(message)
+        else:
+            print(datetime.datetime.now(), threading.current_thread().name, str(args)[1:-1])
+    except Exception as e:
+        ps = 'error print %s' % (str(e))
+        if dual_1og_en:
+            message = "%s %s %s %s" % (str(datetime.datetime.now()),
+                                       threading.current_thread().name, ps,
+                                       str(traceback.print_exc()))
+            Debuger.log_out(message)
+        else:
+            print(datetime.datetime.now(), threading.current_thread().name, ps, traceback.print_exe())
 
 
 # 十六进制转换为32
