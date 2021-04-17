@@ -23,7 +23,7 @@ class QmdTest():
     def timing_transmission_test_case(self, step_name=None):
         # 获取测试的开始时间
         localTime = datetime.datetime.now()
-        check_point = '测试开始时间'
+        check_point = '测试开始时刻'
         check_result = localTime
         self.test_step_info_add_check_point_info(step_name, (check_point, check_result), True)
 
@@ -57,7 +57,7 @@ class QmdTest():
                         '芯片类型': ('0x', '01'),
                         # 'OPTION': option,
                         'CHANEL_INDEX': ('0X', '00')
-                    }
+                    },
                 }
                 mgmt_frame = self.tx.app_mgmt.mgmt_frame_for_pib_gen(init_config)
                 self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, 'A端发送TX_INIT帧')
@@ -97,7 +97,7 @@ class QmdTest():
 
             # 获取测试的结束时间
             localTime = datetime.datetime.now()
-            check_point = '测试结束时间'
+            check_point = '测试结束时刻'
             check_result = localTime
             self.test_step_info_add_check_point_info(step_name, (check_point, check_result), True)
             self.test_step_info_end(step_name)
