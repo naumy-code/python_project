@@ -19,7 +19,7 @@ def excel_test(sheet_name, name, grade, course):
     # 绝对路径
     absolute_path = 'C:\\Users\\ywwei\\Desktop\\test.xlsx'
     # 相对路径
-    excel_path = '../spec/pandas_test.xlsx'
+    excel_path = '../../spec/pandas_test.xlsx'
     result = None
     # 判断文件是否存在
 
