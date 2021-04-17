@@ -18,7 +18,8 @@ from module.common_api import hex_to_int_32
             print(index) # 输出列名
 '''
 
-class QmdTest():
+
+class QmdTest:
 
     def timing_transmission_test_case(self, step_name=None):
         # 获取测试的开始时间
@@ -42,7 +43,7 @@ class QmdTest():
             print(df)
             for row in df.itertuples():
                 print("row", getattr(row, 'Option'))
-                timing_interval, Option, frame_type, transmission_level, sig, data_mcs, pb_mode, sending_times= \
+                timing_interval, Option, frame_type, transmission_level, sig, data_mcs, pb_mode, sending_times = \
                     getattr(row, '定时间隔'), getattr(row, 'Option'), getattr(row, '帧类型'), getattr(row, '发送电平'), \
                     getattr(row, 'SIG'), getattr(row, 'Data_MCS'), getattr(row, 'PB模式'), getattr(row, '发送次数')
 
@@ -67,7 +68,7 @@ class QmdTest():
                 '''
                 dat_config = {
                     'TYPE': '02',
-                    'PIB_ID': 'A321',
+                    'PIB ID': 'A321',
                     'PIB值': '00',
                     '参数': {
                         'FRAME_TYPE': ('0x', '01'),
@@ -86,14 +87,11 @@ class QmdTest():
                 self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, '发端获取时间')
                 receiving_tx_time = self.tx.app_mgmt.mgmt_frame_recv("发端获取时间").split(' ')
 
-                tx_dat_set_time = hex_to_int_32[receiving_tx_time[(4 + 8)*2:((4 + 8)+4)*2]]
+                tx_dat_set_time = hex_to_int_32[receiving_tx_time[(4 + 8) * 2:((4 + 8) + 4) * 2]]
 
                 self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, '收端获取时间')
                 receiving_rx_time = self.tx.app_mgmt.mgmt_frame_recv("收端获取时间").split(' ')
-                tx_dat_set_time = hex_to_int_32[receiving_tx_time[(16 + 8)*2:((16 + 8)+4)*2]]
-
-
-
+                tx_dat_set_time = hex_to_int_32[receiving_tx_time[(16 + 8) * 2:((16 + 8) + 4) * 2]]
 
             # 获取测试的结束时间
             localTime = datetime.datetime.now()
