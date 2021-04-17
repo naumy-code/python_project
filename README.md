@@ -15,6 +15,9 @@
 #### 使用说明
 
 1.  先安装python环境，然后安装第三方依赖包，进行项目的环境准备工作
-    目前需要安装的第三方依赖包有：pandas, numpy
+    使用<font color=green>**pip**</font>安装时的打开cmd窗口的地址
+    > C:\Users\Administrator\AppData\Local\Programs\Python\Python39\Scripts
+    
+目前需要安装的第三方依赖包有：pandas, numpy, xlrd, openpyxl
 2.  进行项目的测试部分
 
