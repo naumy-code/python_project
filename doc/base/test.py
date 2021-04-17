@@ -13,9 +13,12 @@
 # print(b[2:])
 #
 # print('a' & 'b')
+
+
 n = 1
 m = 2
 
+print(str(1).rjust(2,"0"))
 
 
 a = 'a'
