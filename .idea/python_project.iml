@@ -14,6 +14,7 @@
         <option value="$MODULE_DIR$/module" />
         <option value="$MODULE_DIR$/test_step" />
         <option value="$MODULE_DIR$/test_case" />
+        <option value="$MODULE_DIR$/doc/base" />
       </list>
     </option>
   </component>

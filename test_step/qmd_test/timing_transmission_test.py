@@ -2,6 +2,7 @@ import numpy as np
 import module
 import pandas as pd
 import os
+import time, datetime
 
 from module.common_api import hex_to_int_32
 
@@ -20,6 +21,12 @@ from module.common_api import hex_to_int_32
 class QmdTest():
 
     def timing_transmission_test_case(self, step_name=None):
+        # 获取测试的开始时间
+        localTime = datetime.datetime.now()
+        check_point = '测试开始时间'
+        check_result = localTime
+        self.test_step_info_add_check_point_info(step_name, (check_point, check_result), True)
+
         '''
             :param 下电，上电:
             :return　None:
@@ -38,6 +45,7 @@ class QmdTest():
                 timing_interval, Option, frame_type, transmission_level, sig, data_mcs, pb_mode, sending_times= \
                     getattr(row, '定时间隔'), getattr(row, 'Option'), getattr(row, '帧类型'), getattr(row, '发送电平'), \
                     getattr(row, 'SIG'), getattr(row, 'Data_MCS'), getattr(row, 'PB模式'), getattr(row, '发送次数')
+
                 '''
                     第一步：A端发送TX_INIT帧
                 '''
@@ -85,9 +93,14 @@ class QmdTest():
                 tx_dat_set_time = hex_to_int_32[receiving_tx_time[(16 + 8)*2:((16 + 8)+4)*2]]
 
 
-                self.test_step_info_end(step_name)
 
 
+            # 获取测试的结束时间
+            localTime = datetime.datetime.now()
+            check_point = '测试结束时间'
+            check_result = localTime
+            self.test_step_info_add_check_point_info(step_name, (check_point, check_result), True)
+            self.test_step_info_end(step_name)
 
 
 if __name__ == '__main__':
