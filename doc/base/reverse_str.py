@@ -13,9 +13,9 @@ class reverse:
         return ''.join(strList)
 
     def test(self):
-        string = 'DECGABCF'
+        string = '1A234F5D'
         new_str = ''.join(re.findall(r'.{2}', string)[::-1])
-        return new_str
+        return int(new_str, 16)
 
     def split_str(self, string, length):
         """
