@@ -1,3 +1,4 @@
+import math
 # print("hello world   ")
 # str = "hello world   "
 # print(str.strip())
@@ -14,15 +15,18 @@
 #
 # print('a' & 'b')
 
+#
+# n = 1
+# m = 2
+#
+# print(str(1).rjust(2,"0"))
+#
+#
+# a = 'a'
+# a = 'b'
+#
+# print(a)
+# # print("n\t{n}\t{m}".format(n, m))
 
-n = 1
-m = 2
-
-print(str(1).rjust(2,"0"))
-
-
-a = 'a'
-a = 'b'
-
-print(a)
-# print("n\t{n}\t{m}".format(n, m))
+if __name__ == '__main__':
+    print(math.ceil(10))

@@ -22,6 +22,8 @@ print("type_localTime", type(localTime))
 if isinstance(localTime, datetime.datetime):
     print("localTime", localTime)
 
-
+if __name__ == '__main__':
+    current_time = datetime.datetime.now()
+    print("time", current_time.strftime("%Y-%m-%d %H:%M:%S"))
 
 
