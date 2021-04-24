@@ -16,7 +16,7 @@ class pandas_test:
         :return:
         """
         # 相对路径
-        qmd_test_file = '../../spec/pandas_test.xlsx'
+        qmd_test_file = '../../../spec/pandas_test.xlsx'
         pds = pd.read_excel(qmd_test_file, sheet_name=None)
         print(pds)
 

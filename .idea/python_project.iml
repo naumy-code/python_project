@@ -12,7 +12,7 @@
     <option name="namespacePackageFolders">
       <list>
         <option value="$MODULE_DIR$/test_step/qmd_test" />
-        <option value="$MODULE_DIR$/doc/pandas_test" />
+        <option value="$MODULE_DIR$/doc/collect/pandas_test" />
         <option value="$MODULE_DIR$/module" />
         <option value="$MODULE_DIR$/test_step" />
         <option value="$MODULE_DIR$/test_case" />

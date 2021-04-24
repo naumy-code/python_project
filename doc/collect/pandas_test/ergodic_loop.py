@@ -8,7 +8,7 @@ import pandas as pd
 
 class ErgodicLoop:
     def loop(self):
-        excel_path = '../../spec/pandas_test.xlsx'
+        excel_path = '../../../spec/pandas_test.xlsx'
         df = pd.read_excel(excel_path, sheet_name='param')
         print(df)
         # 输出每一行
