@@ -16,6 +16,13 @@ import os
 
 
 def excel_test(sheet_name, name, grade, course):
+    """
+    :param sheet_name:
+    :param name:
+    :param grade:
+    :param course:
+    :return:
+    """
     # 绝对路径
     absolute_path = 'C:\\Users\\ywwei\\Desktop\\test.xlsx'
     # 相对路径
