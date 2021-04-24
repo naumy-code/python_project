@@ -6,6 +6,10 @@
 class User:
     @staticmethod
     def function():
+        """
+            学习python中的类使用
+        :return:
+        """
         name = '张三'
         age = 18
         return name, age
