@@ -50,6 +50,32 @@ def hex_to_int(r):
     return str(int(hex_str, 16))
 
 
+def int32_to_hex(r):
+    return int(r, 16)
+
+
+def int_to_hex(r):
+    return int(r, 16)
+
+
 def hex_to_int_common(r, revert_no_space_byte=None):
     hex_str = revert_no_space_byte(r.replace(' ', ''))
     return int(hex_str, 16)
+
+
+def revert_addr_with_space(doc):
+    doc = doc.replace(' ', '')
+    addr = doc[10:12] + ' ' + doc[8:10] + doc[6:8] + doc[4:6] + ' '
+    return addr
+
+
+def add_space(str_no_space):
+    str_no_space = str_no_space.replace(' ', '')
+    str_with_space = ''
+    for i in range(0, len(str_with_space), 2):
+        str_with_space = str_with_space + ' ' + str_no_space[i:i + 2]
+    return str_with_space[1::]
+
+
+def transfer_hex_to_bin(h):
+    return bin(h)[2:].rjust(1, '0')

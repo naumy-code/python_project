@@ -10,6 +10,7 @@
 
 class auto_excel_dict:
     def auto_excel(self):
+        print("**")
 
 
 
