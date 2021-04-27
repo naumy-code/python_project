@@ -2,55 +2,29 @@ import datetime
 import time
 import re
 import math
-import pandas as pd
 
 from module.common_api import hex_to_int_32, int32_to_hex, int_to_hex
 
 '''
     QMD的测试步骤
     1. 测试用例一： 定时发送测试  timing_transmission_test_case     
+    现在是使用循环Excel的每一行数据进行组帧，现在为了以后的需求，组帧中的参数需要被动态遍历Excel
 '''
 
 
 class TestStepQmd:
 
-    def dat_frame_excel(self, row_index):
-        """
-        读取QMD_ENUM_DAT的excel
-        :param row_index: 每一行的行索引
-        :return: df_list[0] 返回一个字典
-        """
-        # 相对路径
-        df = self.parser.qmd_dat_read_excel("timing_transmission")
-        # Pandas获取Excel表头转换数组形式
-        excel_header = df.columns.tolist()
-        # 替换Excel表格内的空单元格，否则在下一步处理中将会报错
-        df.fillna("", inplace=True)
-        df_list = []
-        # loc为按列名索引 iloc 为按位置索引，使用的是 [[行号], [列名]]
-        df_line = df.loc[row_index, excel_header].to_dict()
-        # 将每一行转换成字典后添加到列表
-        df_list.append(df_line)
-        return df_list[0]
-
     def timing_transmission_test_case(self, step_name=None):
-        """
-        定时发送测试
-        :param step_name: 步骤名称
-        :return:
-        """
         # if step_name is None:
         #     step_name = sys._getframe().f_code.co_name
         self.step.test_step_info_init(step_name)
-        df = self.parser.qmd_read_excel("timing_transmission")
+        df = self.parser.qmd_read_excel("timing_trans")
         count = 0
         list = []
         sum = 0
         sum2 = 0
         # 循环遍历每一种不同的模式
         for row in df.itertuples():
-            print("row.Index", row.Index)
-            row_index = row.Index
             # 获取测试的开始时间
             localTime = datetime.datetime.now()
             check_point = '测试开始时刻'
@@ -107,34 +81,28 @@ class TestStepQmd:
                 '''
                      第二步：A端发送TX_DAT帧
                 '''
-                dat_confg_params = self.dat_frame_excel(row_index)
-                df_list = self.dat_frame_excel()
-                for line in df_list:
-                    dict_conf = line
-                    print(dict_conf)
-
-                    dat_config = {
-                        'TYPE': '02',
-                        'PIB ID': 'A321',
-                        'PIB值': '00',
-                        '参数': {
-                            '芯片类型': ('0x', '01'),
-                            'FRAME_TYPE': ('0x', '01'),
-                            'FRAME_TIMER': timing_interval,
-                            'SIG': sig,
-                            'TX_LEVEL': transmission_level,
-                            'TX_DAT_MCS': data_mcs,
-                            'TX_DAT_PB': pb_mode,
-                            'TX_FORCE_ENABLE': ('0x', '00'),
-                            'TX_DAT_LEN': ('0x', '1000'),
-                            'TX_PHR': ('0x', '01000000000000000000000000000000'),
-                            'TX_PSDU': ('0x', '01000000000000000000000000000000'),
-                        }
+                dat_config = {
+                    'TYPE': '02',
+                    'PIB ID': 'A321',
+                    'PIB值': '00',
+                    '参数': {
+                        '芯片类型': ('0x', '01'),
+                        'FRAME_TYPE': ('0x', '01'),
+                        'FRAME_TIMER': timing_interval,
+                        'SIG': sig,
+                        'TX_LEVEL': transmission_level,
+                        'TX_DAT_MCS': data_mcs,
+                        'TX_DAT_PB': pb_mode,
+                        'TX_FORCE_ENABLE': ('0x', '00'),
+                        'TX_DAT_LEN': ('0x', '1000'),
+                        'TX_PHR': ('0x', '01000000000000000000000000000000'),
+                        'TX_PSDU': ('0x', '01000000000000000000000000000000'),
                     }
-                    mgmt_frame = self.tx.app_mgmt.parser.mgmt_frame_for_pib_gen(dat_config)
-                    self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, 'A端发送TX_DAT帧')
-                    # 进行延时操作， 如果不延时操作会出现一些问题，得到的值会相对来说很大，但是延时操作过长的话会造成所得到的值也很大
-                    time.sleep(10)
+                }
+                mgmt_frame = self.tx.app_mgmt.parser.mgmt_frame_for_pib_gen(dat_config)
+                self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, 'A端发送TX_DAT帧')
+                # 进行延时操作， 如果不延时操作会出现一些问题，得到的值会相对来说很大，但是延时操作过长的话会造成所得到的值也很大
+                time.sleep(10)
 
                 '''
                     第三步：获取各个timing时间

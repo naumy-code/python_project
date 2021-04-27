@@ -3,9 +3,8 @@
 """
 import sys
 
-from config.auto_test_config_map import auto_test_config_map
 from module.common_api import print_with_time_stamp
-from test_step.qmd_test.TestStepQmd import TestStepQmd
+from test_step.qmd_test.back_up.TestStepQmd import TestStepQmd
 
 
 def test_case_name_info(args):

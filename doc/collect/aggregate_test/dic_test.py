@@ -8,15 +8,10 @@
         }
 """
 
+
 class auto_excel_dict:
     def auto_excel(self):
         print("**")
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -31,5 +26,3 @@ if __name__ == '__main__':
         dic[a] = 'bbb'
 
     print(dic)
-
-
