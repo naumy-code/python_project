@@ -36,7 +36,7 @@ class TestStepQmd:
         #     step_name = sys._getframe().f_code.co_name
         self.step.test_step_info_init(step_name)
         # 相对路径
-        file_path = '../../../spec/timing_transmission.xlsx'
+        file_path = '../../../spec/back_up/timing_transmission.xlsx'
         if os.path.exists(file_path):
             print("文件存在")
             df = pd.read_excel(file_path, sheet_name='timing_transmission')

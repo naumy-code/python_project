@@ -97,5 +97,5 @@ def transfer_hex_to_bin(h):
 
 
 if __name__ == '__main__':
-    result = int_to_hex(100)
+    result = int_to_hex(1)
     print(result)
