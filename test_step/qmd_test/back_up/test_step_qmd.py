@@ -87,9 +87,9 @@ class TestStepQmd:
                     'PIB值': '00',
                     '参数': {
                         '芯片类型': ('0x', '01'),
-                        'FRAME_TYPE': ('0x', '01'),
-                        'FRAME_TIMER': timing_interval,
-                        'SIG': sig,
+                        'TX_FRAME_TYPE': ('0x', '01'),
+                        'TX_TIMER': timing_interval,
+                        'TX_SIG': sig,
                         'TX_LEVEL': transmission_level,
                         'TX_DAT_MCS': data_mcs,
                         'TX_DAT_PB': pb_mode,

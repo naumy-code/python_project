@@ -41,9 +41,9 @@ def excel_test(sheet_name, name, grade, course):
         print(df)
 
         # print(df.loc[df['姓名'] == name, ['姓名', '班级']])
-        # result_data = df[(df.姓名 == name) & (df.成绩 == grade) & (df.班级 == course)]
-        # result = result_data['班级']
-        # result = result.values
+        result_data = df[(df.姓名 == name) & (df.成绩 == grade) & (df.班级 == course)]
+        result = result_data['班级']
+        result = result.values
         print(type(result))
 
     return result

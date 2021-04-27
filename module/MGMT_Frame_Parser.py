@@ -17,5 +17,11 @@ class MGMT_Frame_Parser:
         df = pd.read_excel(qmd_test_case_file, sheet_name=sheet_name)
         return df
 
+    # 读取MGMT_PIB中的数据
+    def field_judgment_read_excel(self, sheet_name):
+        qmd_test_case_file = self.cwd + 'spec//MGMT_PIB.xlsx'
+        df = pd.read_excel(qmd_test_case_file, sheet_name=sheet_name)
+        return df
+
     def get_mgmt_type(self, hex_str):
         return self.mgmt_type_map[hex_str]

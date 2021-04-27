@@ -4,7 +4,7 @@ import re
 import math
 import pandas as pd
 
-from module.common_api import hex_to_int_32, int32_to_hex, int_to_hex
+from module.common_api import hex_to_int_32, int32_to_hex, int_to_hex, int16_to_hex
 
 '''
     QMD的测试步骤
@@ -18,7 +18,7 @@ class TestStepQmd:
         """
         读取QMD_ENUM_DAT的excel
         :param row_index: 每一行的行索引
-        :return: df_list[0] 返回一个字典
+        :return: df_list[0] 返回处理后的字典
         """
         # 相对路径
         df = self.parser.qmd_dat_read_excel("timing_transmission")
@@ -31,7 +31,40 @@ class TestStepQmd:
         df_line = df.loc[row_index, excel_header].to_dict()
         # 将每一行转换成字典后添加到列表
         df_list.append(df_line)
-        return df_list[0]
+        dat_confg_params = df_list[0]
+        print(dat_confg_params)
+        for k in dat_confg_params:
+            print("key", k)
+            v = int(dat_confg_params[k])
+            # 找到相应的字段大小
+            filed_data = self.find_values_in_excel(k, v)
+            dat_confg_params[k] = ('0x', filed_data)
+        dat_confg_params['TX_PSDU'] = '01000000000000000000000000000000'
+        print(dat_confg_params)
+        return dat_confg_params
+
+    def field_judgment(self, field, field_value):
+        """
+        根据名称查找相应的字段大小,然后返回转换后的值
+        :param field_value: 字段值
+        :param field: 字段
+        :return:
+        """
+        df = self.parser.field_judgment_read_excel("TX_DAT")
+        result_data = df[(df.字段 == field)]
+        field_length = result_data['字段大小(比特)'].values
+        field_length = field_length[0]
+        print("field_length", field_length)
+        print('field_value', type(field_value))
+        if field_length == 8:
+            converted_filed_data = int_to_hex(int(field_value))
+        if field_length == 16:
+            converted_filed_data = int16_to_hex(field_value)
+        if field_length == 32:
+            converted_filed_data = int32_to_hex(field_value)
+        if field_length == 128:
+            converted_filed_data = '01000000000000000000000000000000'
+        return converted_filed_data
 
     def timing_transmission_test_case(self, step_name=None):
         """
@@ -108,33 +141,16 @@ class TestStepQmd:
                      第二步：A端发送TX_DAT帧
                 '''
                 dat_confg_params = self.dat_frame_excel(row_index)
-                df_list = self.dat_frame_excel()
-                for line in df_list:
-                    dict_conf = line
-                    print(dict_conf)
-
-                    dat_config = {
-                        'TYPE': '02',
-                        'PIB ID': 'A321',
-                        'PIB值': '00',
-                        '参数': {
-                            '芯片类型': ('0x', '01'),
-                            'FRAME_TYPE': ('0x', '01'),
-                            'FRAME_TIMER': timing_interval,
-                            'SIG': sig,
-                            'TX_LEVEL': transmission_level,
-                            'TX_DAT_MCS': data_mcs,
-                            'TX_DAT_PB': pb_mode,
-                            'TX_FORCE_ENABLE': ('0x', '00'),
-                            'TX_DAT_LEN': ('0x', '1000'),
-                            'TX_PHR': ('0x', '01000000000000000000000000000000'),
-                            'TX_PSDU': ('0x', '01000000000000000000000000000000'),
-                        }
-                    }
-                    mgmt_frame = self.tx.app_mgmt.parser.mgmt_frame_for_pib_gen(dat_config)
-                    self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, 'A端发送TX_DAT帧')
-                    # 进行延时操作， 如果不延时操作会出现一些问题，得到的值会相对来说很大，但是延时操作过长的话会造成所得到的值也很大
-                    time.sleep(10)
+                dat_config = {
+                    'TYPE': '02',
+                    'PIB ID': 'A321',
+                    'PIB值': '00',
+                    '参数': dat_confg_params
+                }
+                mgmt_frame = self.tx.app_mgmt.parser.mgmt_frame_for_pib_gen(dat_config)
+                self.tx.app_mgmt.mgmt_frame_send(mgmt_frame, 'A端发送TX_DAT帧')
+                # 进行延时操作， 如果不延时操作会出现一些问题，得到的值会相对来说很大，但是延时操作过长的话会造成所得到的值也很大
+                time.sleep(10)
 
                 '''
                     第三步：获取各个timing时间
