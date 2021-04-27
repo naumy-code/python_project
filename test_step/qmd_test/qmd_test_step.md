@@ -4,5 +4,6 @@
 
 case_1, 定时发送测试
 
-![img.png](../../images/qmd/tx_dat.png)
-![img.png](../../images/qmd/img.png)
+![img.png](../../images/qmd/img_init.png)
+![img_1.png](../../images/qmd/img_dat.png)
+![img.png](../../images/qmd/img_Gettiming.png)
