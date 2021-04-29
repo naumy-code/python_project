@@ -8,7 +8,8 @@ from module.common_api import hex_to_int_32, int32_to_hex, int_to_hex, int16_to_
 
 '''
     QMD的测试步骤
-    1. 测试用例一： 定时发送测试  timing_transmission_test_case     
+    1. 测试用例一： 定时发送测试  timing_transmission_test_case    
+    WEHWEIHC 8IW 
 '''
 
 
