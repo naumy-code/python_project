@@ -68,6 +68,7 @@ class dict:
             df_line = df.loc[i, excel_header].to_dict()
             # 将每一行转换成字典后添加到列表
             df_list.append(df_line)
+        print("dat_confg_params", df_list)
         dat_confg_params = df_list[0]
         print(dat_confg_params)
         for k in dat_confg_params:
