@@ -1,5 +1,22 @@
 ### qmd的说明文档
 
+##### 理论值：
+```bash
+    104 OPTION1
+    52 OPTION2
+    20 OPTION3
+    
+    STF+LTF+SIG+PHR+PAYLOAD
+    
+    TX_START_OF_PACKET --   TX_START_OF_SIG的长度   ->   STF+LTF+SIG
+    
+    TX_START_OF_SIG    --   TX_END_OF_PHR的长度     ->   SIG+PHR
+    
+    TX_END_OF_PHR      --   TX_END_OF_PAYLOAD的长度 ->   PAYLOAD
+```
+
+
+
 测试用例：
 
 ![img.png](../../images/qmd/img_init.png)
