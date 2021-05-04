@@ -23,6 +23,11 @@ python_project
 ├──README.md            // readme
 ~~~
 
+#### 分支管理
+[https://kb.cnblogs.com/page/132209/](https://kb.cnblogs.com/page/132209/)
+
+![开发分支](https://images.gitee.com/uploads/images/2021/0504/133517_08b9b1fe_7347710.png "屏幕截图.png")
+
 #### 安装教程
 
 1.  [python安装教程](https://blog.csdn.net/qq_36667170/article/details/79275605?ops_request_misc=&request_id=&biz_id=102&utm_term=python%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-7-79275605.first_rank_v2_pc_rank_v29)
