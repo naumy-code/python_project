@@ -25,6 +25,15 @@ python_project
 #### 分支管理
 
 #### 分支管理
+```bash
+需要新建一个new分支并切换:
+git checkout -b (branchname)
+等价于
+git branch (branchname)
+
+git checkout (branchname)
+```
+
 [https://kb.cnblogs.com/page/132209/](https://kb.cnblogs.com/page/132209/)
 
 ![开发分支](https://images.gitee.com/uploads/images/2021/0504/133517_08b9b1fe_7347710.png "屏幕截图.png")
