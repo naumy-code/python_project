@@ -28,4 +28,5 @@ if isinstance(localTime, datetime.datetime):
 
 if __name__ == '__main__':
     current_time = datetime.datetime.now()
+    print("merge code test")
     print("time", current_time.strftime("%Y-%m-%d %H:%M:%S"))
