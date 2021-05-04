@@ -14,4 +14,5 @@ class config:
 
 if __name__ == '__main__':
     con = config()
+    print("test branch merge")
     print(type(int(reverse_param("SOF"))))

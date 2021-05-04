@@ -14,7 +14,6 @@ from module.common_api import hex_to_int_32, int32_to_hex, int_to_hex, int16_to_
 
 
 class TestStepQmd:
-
     def dat_frame_excel(self, row_index, sheet_name):
         """
         读取QMD_ENUM_DAT的excel
