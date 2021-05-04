@@ -26,12 +26,10 @@ python_project
 
 #### 分支管理
 ```bash
-需要新建一个new分支并切换:
+# 需要新建一个new分支并切换:
 git checkout -b (branchname)
-等价于
-git branch (branchname)
-
-git checkout (branchname)
+# 等价于
+git branch (branchname) -> git checkout (branchname)
 ```
 
 [https://kb.cnblogs.com/page/132209/](https://kb.cnblogs.com/page/132209/)
