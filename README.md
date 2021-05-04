@@ -1,11 +1,27 @@
 # python_project
 
+
 #### 介绍
 用来进行python项目的测试开发工作。进行pytohn的demo编写。
 
 #### 软件架构
 软件架构说明
-
+~~~
+python_project  
+├── config              // 配置
+├── doc                 // 学习资源
+├── images              // 图片
+├── jenkins             // 连接jenkins
+├── log                 // 日志
+├── module              // 接口模块
+├── spec                // 表格存储
+│       └── back_up                       // 备份文件
+├── test_case           // 测试用例
+│       └── qmd                           // qmd的测试用例
+├── test_step           // 测试步骤
+│       └── qmd_test                      // qmd的测试步骤
+├──README.md            // readme
+~~~
 
 #### 安装教程
 
